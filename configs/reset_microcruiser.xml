@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<initialize name="reset_microcruiser">
+  <!-- Heimatpunkt: Koordinaten aus deiner Angabe -->
+  <position>
+    <latitude unit="DEG">46.79741565</latitude>
+    <longitude unit="DEG">7.53147906</longitude>
+    <altitude unit="M">650</altitude>   <!-- anpassen an Platzhöhe -->
+    <psi unit="DEG">160</psi>           <!-- Heading Richtung Belp -->
+    <theta unit="DEG">0</theta>
+    <phi unit="DEG">0</phi>
+  </position>
+
+  <vc unit="M/S">18.0</vc>  <!-- Startgeschwindigkeit über Stall -->
+
+  <fcs>
+    <throttle-pos-norm>0.70</throttle-pos-norm>
+    <elevator-pos-norm>0.0</elevator-pos-norm>
+    <aileron-pos-norm>0.0</aileron-pos-norm>
+    <rudder-pos-norm>0.0</rudder-pos-norm>
+  </fcs>
+</initialize>
