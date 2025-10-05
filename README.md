@@ -1,4 +1,4 @@
-# 🛫 Autopilot-Microcruiser-RC-Flugzeug
+#  Autopilot-Microcruiser-RC-Flugzeug
 
 Begleitprojekt zur technischen Dokumentation  
 **Autonomes Landeverfahren mit visueller Bahnerkennung und MAVLink-Autopilotsteuerung**
