@@ -40,7 +40,7 @@ die im Rahmen der Projektarbeit **„Autopilot für Microcruiser RC Flugzeug“*
 ```text
 Autopilot-Microcruiser-RC-Flugzeug/
 │
-├── 📘 README.md
+├──  README.md
 │
 ├── 📂 scripts/
 │   ├── autoland_trigger_on_land.py       ← Hauptskript (visuelle Bahnerkennung & Trigger)
