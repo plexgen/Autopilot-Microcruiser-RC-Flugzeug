@@ -1,52 +1,55 @@
-# Autopilot-Microcruiser-RC-Flugzeug
-Begleitprojekt zur technischen Dokumentation - Autopilot für Microcruiser RC Flugzeug
+# 🛫 Autopilot-Microcruiser-RC-Flugzeug
 
-Dieses Repository enthält alle Skripte, Parameterdateien und Konfigurationen, die im Rahmen der Technischen Dokumentation zum **autonomen Landeverfahren mit visueller Bahnerkennung und MAVLink-Autopilotsteuerung** beschrieben sind.
+Begleitprojekt zur technischen Dokumentation  
+**Autonomes Landeverfahren mit visueller Bahnerkennung und MAVLink-Autopilotsteuerung**
 
-Das System basiert auf einem **Raspberry Pi Compute Module 4 (CM4)** zur Bildverarbeitung, einem **Pixracer R15** als Flugsteuerung sowie einer **CSI-Kamera** zur Laufzeit-Erkennung der Landebahn.
-
----
-
-## 📘 Übersicht
-
-| Kategorie              | Inhalt / Datei | Beschreibung |
-|------------------------|----------------|---------------|
-| 📂 `scripts/`          | [`autoland_trigger_on_land_objektorientiert.py`](scripts/autoland_trigger_on_land.py) | Hauptskript zur autonomen Triggerung des Landemodus bei erkannter Bahn |
-|                        | [`Sensordaten_plott_und_excel.py`](scripts/Sensordaten_plott_und_excel.py) | Auswertungsskript (BIN → HTML + Excel-Export) |
-| 📂 `batch/`            | [`Datendownload.bat`](batch/Datendownload.bat) | Automatischer Video- und Log-Download vom Raspberry Pi |
-| 📂 `configs/`          | [`microcruiser.xml`](configs/microcruiser.xml) | Fahrzeugkonfiguration |
-|                        | [`reset_microcruiser.xml`](configs/reset_microcruiser.xml) | Reset-Konfiguration |
-| 📂 `params/`           | [`pixracer_autoland.param`](params/pixracer_autoland.param) | Pixracer-Parameterdatei (ArduPlane 4.6.2) |
-| 📂 `docs/`             | `Anhang_B_Autopilot_Microcruiser_final.pdf` | Begleitdokumentation (Anhang B – Software & Parametrierungen) |
+Dieses Repository enthält alle Skripte, Parameterdateien und Konfigurationen,  
+die im Rahmen der Projektarbeit **„Autopilot für Microcruiser RC Flugzeug“** entwickelt und eingesetzt wurden.
 
 ---
 
 ## ⚙️ Systemübersicht
 
-**Komponenten:**
-- Raspberry Pi CM4 (Compute Module 4)  
-- Pixracer R15 (ArduPlane 4.6.2)  
-- CSI-Kamera (IMX708)  
-- Eigenes UBEC (5 V) für CM4  
+**Trägerplattform:**  
+- [JTPaero – Microcruiser](https://aerojtp.com/s/aero-jtp/:Micro_Cruisers)  
+- Spannweite: 460 mm  
+- Antrieb: EDF (Electric Ducted Fan)  
+- Steuerung: Quer-, Höhenruder, Gas  
+- Missionsprofil: GPS-Navigation, autonomes Landeverfahren
 
-**Kommunikation:**
-- UART (MAVLink) zwischen CM4 ↔ Pixracer  
-- CSI-Schnittstelle für Kamera  
+**Autopilot: Pixracer R15 (ArduPlane 4.6.2)**  
+- Zentrale Flugsteuerung (Lage, Mission, Sensorfusion)  
+- MAVLink-Kommunikation mit CM4 (UART)  
+- Unterstützt automatische Modi (AUTO, GUIDED, LAND)  
+- Failsafe-Mechanismen und RC-Priorität aktiv
 
-**Funktion:**
-- Visuelle Bahnerkennung in Echtzeit  
-- Autonomer Wechsel in Landemodus  
-- Log- und Videodokumentation zur Nachweisführung  
+**Compute Module 4 (CM4):**  
+- Raspberry Pi CM4 mit CSI-Kamera (IMX708)  
+- Eigenes UBEC (5 V) für stabile Versorgung  
+- Echtzeit-Bahnerkennung & Trigger des LAND-Modus über MAVLink  
 
 ---
 
-## 🚀 Verwendung
+## 📁 Projektstruktur
 
-### 1. CM4 Setup
-> Siehe Abschnitt **B.x.1** der Technischen Dokumentation  
-> *(Anhang_B_Autopilot_Microcruiser_final.pdf)*
-
-### 2. Skript-Start
-```bash
-source ~/mavenv/bin/activate
-python3 autoland_trigger_on_land.py
+```text
+Autopilot-Microcruiser-RC-Flugzeug/
+│
+├── 📘 README.md
+│
+├── 📂 scripts/
+│   ├── autoland_trigger_on_land.py       ← Hauptskript (visuelle Landebahntriggerung)
+│   └── Sensordaten_plott_und_excel.py    ← Auswertungsskript (.bin → HTML / Excel)
+│
+├── 📂 batch/
+│   └── Datendownload.bat                 ← Automatischer Video- & Log-Download (Pi)
+│
+├── 📂 configs/
+│   ├── microcruiser.xml                  ← Simulationsmodell (JSBSim)
+│   └── reset_microcruiser.xml            ← Reset-Datei für Startbedingungen
+│
+├── 📂 params/
+│   └── pixracer_autoland.param           ← Pixracer-Parameter (ArduPlane 4.6.2)
+│
+└── 📂 docs/
+    └── Anhang_B_Autopilot_Microcruiser_final.pdf   ← Setup-, Parametrierungs- & Skriptanleitung
