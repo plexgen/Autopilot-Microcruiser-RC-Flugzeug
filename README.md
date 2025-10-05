@@ -4,33 +4,38 @@ Begleitprojekt zur technischen Dokumentation
 **Autonomes Landeverfahren mit visueller Bahnerkennung und MAVLink-Autopilotsteuerung**
 
 Dieses Repository enthält alle Skripte, Parameterdateien und Konfigurationen,  
-die im Rahmen der Projektarbeit **„Autopilot für Microcruiser RC Flugzeug“** entwickelt und eingesetzt wurden.
+die im Rahmen der Projektarbeit **„Autopilot für Microcruiser RC Flugzeug“** entwickelt wurden.
 
 ---
 
-## ⚙️ Systemübersicht
+##  Systemübersicht
 
 **Trägerplattform:**  
-- [JTPaero – Microcruiser](https://aerojtp.com/s/aero-jtp/:Micro_Cruisers)  
+- Hersteller: [JTPaero – Microcruiser](https://aerojtp.com/s/aero-jtp/:Micro_Cruisers)  
 - Spannweite: 460 mm  
 - Antrieb: EDF (Electric Ducted Fan)  
 - Steuerung: Quer-, Höhenruder, Gas  
-- Missionsprofil: GPS-Navigation, autonomes Landeverfahren
+- Missionsprofil: Wegpunktflug & autonomes Landeverfahren  
 
 **Autopilot: Pixracer R15 (ArduPlane 4.6.2)**  
-- Zentrale Flugsteuerung (Lage, Mission, Sensorfusion)  
-- MAVLink-Kommunikation mit CM4 (UART)  
-- Unterstützt automatische Modi (AUTO, GUIDED, LAND)  
-- Failsafe-Mechanismen und RC-Priorität aktiv
+- Zentrale Flugsteuerung für Lage, Navigation & Missionsmanagement  
+- MAVLink-Kommunikation (UART) mit CM4  
+- Unterstützte Flugmodi: `AUTO`, `GUIDED`, `LAND`  
+- Empfangene Befehle:
+  - `SET_MODE` – Wechsel Flugmodus  
+  - `DO_LAND_START` – Start Autoland-Sequenz  
+  - `SET_POSITION_TARGET_GLOBAL_INT` – Positionsvorgabe (z. B. Offset-Landung)  
 
 **Compute Module 4 (CM4):**  
-- Raspberry Pi CM4 mit CSI-Kamera (IMX708)  
-- Eigenes UBEC (5 V) für stabile Versorgung  
-- Echtzeit-Bahnerkennung & Trigger des LAND-Modus über MAVLink  
+- Raspberry Pi CM4 mit **CSI-Kamera (IMX708)**  
+- Eigenes 5 V-UBEC (getrennte Stromversorgung)  
+- Echtzeit-Bahnerkennung über **Picamera2 + OpenCV**  
+- MAVLink-Kommunikation mit Pixracer  
+- Autonomer Trigger des LAND-Modus  
 
 ---
 
-## 📁 Projektstruktur
+##  Projektstruktur
 
 ```text
 Autopilot-Microcruiser-RC-Flugzeug/
@@ -38,18 +43,18 @@ Autopilot-Microcruiser-RC-Flugzeug/
 ├── 📘 README.md
 │
 ├── 📂 scripts/
-│   ├── autoland_trigger_on_land.py       ← Hauptskript (visuelle Landebahntriggerung)
+│   ├── autoland_trigger_on_land.py       ← Hauptskript (visuelle Bahnerkennung & Trigger)
 │   └── Sensordaten_plott_und_excel.py    ← Auswertungsskript (.bin → HTML / Excel)
 │
 ├── 📂 batch/
-│   └── Datendownload.bat                 ← Automatischer Video- & Log-Download (Pi)
+│   └── Datendownload.bat                 ← Automatischer Video- & Log-Download (Raspberry Pi)
 │
 ├── 📂 configs/
-│   ├── microcruiser.xml                  ← Simulationsmodell (JSBSim)
-│   └── reset_microcruiser.xml            ← Reset-Datei für Startbedingungen
+│   ├── microcruiser.xml                  ← Flugzeugmodell (JSBSim)
+│   └── reset_microcruiser.xml            ← Reset-Parameter
 │
 ├── 📂 params/
-│   └── pixracer_autoland.param           ← Pixracer-Parameter (ArduPlane 4.6.2)
+│   └── pixracer_autoland.param           ← Pixracer-Konfiguration (ArduPlane 4.6.2)
 │
 └── 📂 docs/
-    └── Anhang_B_Autopilot_Microcruiser_final.pdf   ← Setup-, Parametrierungs- & Skriptanleitung
+    └── Anhang_B_Autopilot_Microcruiser_final.pdf   ← Begleitdokumentation (Setup, Parameter, Skripte)
