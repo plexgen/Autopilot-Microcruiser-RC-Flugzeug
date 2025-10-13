@@ -57,4 +57,7 @@ Autopilot-Microcruiser-RC-Flugzeug/
 │   └── pixracer_autoland.param           ← Pixracer-Konfiguration (ArduPlane 4.6.2)
 │
 └── 📂 docs/
-    └── Anhang_B_Autopilot_Microcruiser_final.pdf   ← Begleitdokumentation (Setup, Parameter, Skripte)
+    ├── Anhang_B_Autopilot_Microcruiser_final.pdf   ← Begleitdokumentation (Setup, Parameter, Skripte)
+    ├──📂 logs/                          ← Logdaten
+    ├──📂 STL/                           ← Druckdateien Halter LIDAR und Kamera
+    └──📂 videos/                        ← Videodateien 
